@@ -14,17 +14,22 @@
             </header>
 
             <div class="main">
-                {{> form }}
-                <ul class="products">
-                    {{#each getProducts}}
-                        <div>
-                            {{productName}}
-                            {{productStock}}
-                            <button class="addToCart">Add to cart</button>
-                        </div>
-                    {{/each}}
-                </ul>
-                {{> cart}}
+                {{#if isUserLogged}}
+                <ul><button class="logout">Logout</button></ul>
+                    {{> form }}
+                    <ul class="products">
+                        {{#each getProducts}}
+                            <div>
+                                {{productName}}
+                                {{productStock}}
+                                <button class="addToCart" disabled={{isDisabled}}>Add to cart</button>
+                            </div>
+                        {{/each}}
+                    </ul>
+                    <ul>{{> cart}}</ul>
+                {{else}}
+                    {{> login }}
+                {{/if}}
             </div>
         </div>
     </template>
@@ -37,7 +42,7 @@
         <form class="product-form">
             <input type="text" class="productName" placeholder="New product name" />
             <input type="text" class="productStock" placeholder="Stock" />
-            <button class="addProduct">Add Product</button>
+            <button class="addProduct" >Add Product</button>
         </form>
     </template>
 
@@ -46,7 +51,7 @@
         <ul class="products">
             {{#each getUserCart}}
                 <div>
-                    {{_id}}
+                    {{productName}}
                      - 
                     {{quantity}}
                 </div>

@@ -10,6 +10,8 @@ import "./Login.js";
 const HIDE_COMPLETED_STRING = 'hideCompleted';
 const IS_LOADING_STRING = "isLoading";
 const userCart = new ReactiveVar([]);
+let pName = '';
+let pStock = '';
 
 const getUser = () => Meteor.user();
 const isUserLogged = () => !!getUser();
@@ -41,12 +43,11 @@ Template.mainContainer.events({
     const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
     instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
   },
-  'click .user'() {
+  'click .logout'() {
     Meteor.logout();
   },
   'click .addToCart'(event) {
     event.preventDefault();
-    console.log("id", this._id);
     Meteor.call('product.addToCart', {'id':this._id});
     const userCartData = userCart.get();
     let exists = false;
@@ -54,12 +55,14 @@ Template.mainContainer.events({
       console.log('id dentro del cart', userCartData[i]);
       if(userCartData[i]._id === this._id){
         userCartData[i].quantity++;
+        ////////////SIMPLIFICAR/////////
+        userCartData[i].productName = ProductCollection.find({_id:userCartData[i]._id}).fetch()[0].productName;
         exists = true;
         break;
       }
     }
     if(!exists){
-      userCartData.push({_id: this._id, quantity: 1});
+      userCartData.push({_id: this._id, quantity: 1, productName: ProductCollection.find({_id:this._id}).fetch()[0].productName});
     }
     userCart.set(userCartData);
   }
@@ -90,9 +93,9 @@ Template.mainContainer.helpers({
         ).fetch();
   },
   
-  getProducts() {
-    console.log('products display', ProductCollection.find({}).fetch());
-    return ProductCollection.find({}).fetch();
+   getProducts(param) {
+    console.log('products display', ProductCollection.find({param}).fetch());
+    return ProductCollection.find({param}).fetch();
   },
   
   hideCompleted() {
@@ -120,6 +123,13 @@ Template.mainContainer.helpers({
   isLoading() {
     const instance = Template.instance();
     return instance.state.get(IS_LOADING_STRING);
+  },
+
+  isDisabled(){
+    if(this.productStock < 1){
+      return true;
+    }
+    return false;
   }
 });
 
@@ -152,10 +162,34 @@ Template.form.events({
       
       // Prevent default browser form submit
       event.preventDefault();
+
       const productName = document.getElementsByClassName("productName")[0];
       console.log("productName add", productName.value);
       const productStock = document.getElementsByClassName("productStock")[0]; 
       console.log("productStock add", productStock.value);
-      Meteor.call('product.insert', {'productName':productName.value, 'productStock':productStock.value});
+      if(productName.value === '' || productStock.value === ''){
+        alert('Product name and Stock can not be empty.');
+        return;
+      }
+      else{ 
+        Meteor.call('product.insert', {'productName':productName.value, 'productStock':productStock.value});
+      }
     },
-  })
+    'input .productName'(event){
+      event.preventDefault();
+     let name = document.getElementsByClassName("productName")[0].value;
+      if( name != ''){
+        pName = name;
+      }
+    },
+
+    'input .productStock'(event){
+      event.preventDefault();
+     let stock = document.getElementsByClassName("productStock")[0].value;
+      if( stock != ''){
+        pStock = stock;
+      };
+    },
+
+   
+  });
