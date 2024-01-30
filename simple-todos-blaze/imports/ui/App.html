@@ -1,0 +1,56 @@
+<body>
+    {{> mainContainer}}
+    </body>
+    
+    
+    <template name="mainContainer">
+        <div class="app">
+            <header>
+                <div class="app-bar">
+                    <div class="app-header">
+                        <h1>📝️ To Do List {{incompleteCount}}</h1>
+                    </div>
+                </div>
+            </header>
+
+            <div class="main">
+                {{> form }}
+                <ul class="products">
+                    {{#each getProducts}}
+                        <div>
+                            {{productName}}
+                            {{productStock}}
+                            <button class="addToCart">Add to cart</button>
+                        </div>
+                    {{/each}}
+                </ul>
+                {{> cart}}
+            </div>
+        </div>
+    </template>
+    
+    <template name="form">
+        <!-- <form class="task-form">
+            <input type="text" name="text" placeholder="Type to add new tasks" />
+            <button type="submit">Add Task</button>
+        </form> -->
+        <form class="product-form">
+            <input type="text" class="productName" placeholder="New product name" />
+            <input type="text" class="productStock" placeholder="Stock" />
+            <button class="addProduct">Add Product</button>
+        </form>
+    </template>
+
+    <template name="cart">
+        <h1>Cart</h1>
+        <ul class="products">
+            {{#each getUserCart}}
+                <div>
+                    {{_id}}
+                     - 
+                    {{quantity}}
+                </div>
+            {{/each}}
+        </ul>
+        <button class="buyNow">Buy Now</button>
+    </template>
