@@ -196,3 +196,15 @@ header {
 .buyNow {
   background-color: #b6291f;
 }
+
+.product{
+  display:flex;
+  border:1px solid;
+  padding: 4px;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+.productName{
+  display: flex;
+  flex-direction: column;
+}
