@@ -1,19 +1,23 @@
 import { Meteor } from "meteor/meteor";
-import { Accounts } from "meteor/accounts-base";
 
 import "/imports/api/productMethods";
 import "/imports/api/productPublications";
-
-const SEED_USERNAME = "meteorite";
-const SEED_PASSWORD = "password";
+import { ProductCollection } from "../imports/db/ProductCollection";
 
 Meteor.startup(() => {
-  if (!Accounts.findUserByUsername(SEED_USERNAME)) {
-    Accounts.createUser({
-      username: SEED_USERNAME,
-      password: SEED_PASSWORD,
-    });
+  const startupProducts = [
+    { name: "T-Shirt", stock: 10 },
+    { name: "Sweater", stock: 20 },
+    { name: "Boots", stock: 45 },
+    { name: "Belt", stock: 5 },
+    { name: "Skirt", stock: 15 },
+  ];
+  if (ProductCollection.find().count() === 0) {
+    startupProducts.forEach((product) =>
+      Meteor.call("product.insert", {
+        productName: product.name,
+        productStock: product.stock,
+      })
+    );
   }
-
-  const user = Accounts.findUserByUsername(SEED_USERNAME);
 });

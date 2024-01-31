@@ -1,18 +1,19 @@
+button {
+  font-size: 14px !important;
+}
+
 body {
   font-family: sans-serif;
   background-color: #315481;
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
-
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   padding: 0;
   margin: 0;
-
   font-size: 14px;
 }
 
@@ -64,12 +65,15 @@ header {
 
 .addProduct {
   background-color: #1e28bd;
+  min-width: fit-content;
 }
 
 .addProductInput {
   border: 1px solid black;
   border-radius: 4px;
   padding: 5px 10px;
+  width: 250px;
+  height: 40px;
 }
 
 .buyNow {
@@ -97,14 +101,6 @@ header {
   padding: 6px;
   justify-content: space-between;
   margin-bottom: 2px;
-}
-.productName {
-  display: flex;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-direction: column;
-  width: calc(100% - 100px);
 }
 
 .productForm {

@@ -23,10 +23,8 @@ Template.mainContainer.events({
     const userCartData = userCart.get();
     let exists = false;
     for (let i = 0; i < userCartData.length; i++) {
-      console.log("id dentro del cart", userCartData[i]);
       if (userCartData[i]._id === this._id) {
         userCartData[i].quantity++;
-        ////////////SIMPLIFICAR/////////
         userCartData[i].productName = ProductCollection.find({
           _id: userCartData[i]._id,
         }).fetch()[0].productName;
@@ -47,7 +45,6 @@ Template.mainContainer.events({
 });
 Template.cart.events({
   "click .buyNow"(event) {
-    console.log("buy now clicked");
     event.preventDefault();
     userCart.set([]);
   },
@@ -55,7 +52,6 @@ Template.cart.events({
 
 Template.mainContainer.helpers({
   getProducts(param) {
-    console.log("products display", ProductCollection.find({ param }).fetch());
     return ProductCollection.find({ param }).fetch();
   },
 
@@ -69,7 +65,6 @@ Template.mainContainer.helpers({
 
 Template.cart.helpers({
   getUserCart() {
-    console.log(userCart.get());
     return userCart.get();
   },
   getUserCartLength() {
@@ -88,9 +83,7 @@ Template.form.events({
     event.preventDefault();
 
     const productName = document.getElementsByClassName("productName")[0];
-    console.log("productName add", productName.value);
     const productStock = document.getElementsByClassName("productStock")[0];
-    console.log("productStock add", productStock.value);
     if (productName.value === "" || productStock.value === "") {
       alert("Product name and Stock can not be empty.");
       return;
@@ -101,22 +94,6 @@ Template.form.events({
       });
       productName.value = "";
       productStock.value = "";
-    }
-  },
-  "input .productName"(event) {
-    event.preventDefault();
-    let name = document.getElementsByClassName("productName")[0].value;
-    if (name != "") {
-      pName = name;
-    }
-  },
-  "input .productStock"(event) {
-    console.log("se esta escribiendo");
-    event.preventDefault();
-    let stock = document.getElementsByClassName("productStock")[0].value;
-
-    if (stock.match(/^\d{1,7}/)) {
-      stock = stock;
     }
   },
 });
