@@ -103,11 +103,12 @@ Template.form.events({
     }
   },
   "input .productStock"(event) {
+    console.log("se esta escribiendo");
     event.preventDefault();
     let stock = document.getElementsByClassName("productStock")[0].value;
 
-    if (stock != "") {
-      pStock = stock;
+    if (stock.match(/^\d{1,7}/)) {
+      stock = stock;
     }
   },
 });
