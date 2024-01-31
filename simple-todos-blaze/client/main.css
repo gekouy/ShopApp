@@ -1,7 +1,3 @@
-button {
-  font-size: 14px !important;
-}
-
 body {
   font-family: sans-serif;
   background-color: #315481;
@@ -87,6 +83,10 @@ header {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+button {
+  font-size: 14px !important;
 }
 
 .products {

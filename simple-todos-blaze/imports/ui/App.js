@@ -4,8 +4,6 @@ import { ProductCollection } from "../db/ProductCollection.js";
 import { ReactiveDict } from "meteor/reactive-dict";
 import "./App.html";
 
-const HIDE_COMPLETED_STRING = "hideCompleted";
-const IS_LOADING_STRING = "isLoading";
 const userCart = new ReactiveVar([]);
 
 Template.mainContainer.onCreated(function mainContainerOnCreated() {
