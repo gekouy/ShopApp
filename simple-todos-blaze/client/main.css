@@ -22,13 +22,6 @@ body {
   height: 100vh;
 }
 
-.app-header {
-  flex-grow: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .main {
   display: flex;
   flex-direction: column;
@@ -46,21 +39,9 @@ body {
 header {
   background: #d2edf4;
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
-  padding: 20px 15px 15px 15px;
+  padding: 20px 15px 15px 0px;
   position: relative;
   box-shadow: 0 3px 3px rgba(34, 25, 25, 0.4);
-}
-
-.app-bar {
-  display: flex;
-  justify-content: space-between;
-}
-
-.app-bar h1 {
-  font-size: 1.5em;
-  margin: 0;
-  display: inline-block;
-  margin-right: 1em;
 }
 
 .addToCart,
@@ -93,6 +74,7 @@ header {
 
 .buyNow {
   background-color: purple;
+  margin-top: 15px;
   width: 200px;
   height: 40px;
 }

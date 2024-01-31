@@ -5,11 +5,7 @@
 <template name="mainContainer">
   <div class="app">
     <header>
-      <div class="app-bar">
-        <div class="app-header">
-          <h1>ShopApp</h1>
-        </div>
-      </div>
+      <h1 class="marginLeft40">ShopApp</h1>
     </header>
     <div class="main">
       {{> form }}
@@ -52,6 +48,7 @@
 
 <template name="cart">
   <h2 class="marginLeft40">Cart</h2>
+  {{#if getUserCartLength}}
   <div class="products">
     {{#each getUserCart}}
     <div class="product flexDirectionColumn">
@@ -63,4 +60,7 @@
       <button class="buyNow">BUY NOW!</button>
     </div>
   </div>
+  {{else}}
+  <h3 class="marginLeft40">Add an item to your Cart.</h3>
+  {{/if}}
 </template>

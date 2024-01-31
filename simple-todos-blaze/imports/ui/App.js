@@ -72,6 +72,14 @@ Template.cart.helpers({
     console.log(userCart.get());
     return userCart.get();
   },
+  getUserCartLength() {
+    const userCartData = userCart.get();
+    if (userCartData.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 });
 
 Template.form.events({
