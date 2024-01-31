@@ -77,7 +77,6 @@ Template.cart.helpers({
 
 Template.form.events({
   "click .addProduct"(event) {
-    // Prevent default browser form submit
     event.preventDefault();
 
     const productName = document.getElementsByClassName("productName")[0];
