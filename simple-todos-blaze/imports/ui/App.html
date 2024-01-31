@@ -14,6 +14,7 @@
     <div class="main">
       {{> form }}
       <ul class="products">
+        <h2>Catalog</h2>
         {{#each getProducts}}
         <div class="product">
           <div class="productName">
@@ -26,27 +27,40 @@
         </div>
         {{/each}}
       </ul>
-      <ul>
-        {{> cart}}
-      </ul>
+      {{> cart}}
     </div>
   </div>
 </template>
 
 <template name="form">
+  <h2 class="marginLeft40">Add products to database</h2>
   <form class="productForm">
-    <input type="text" class="productName" placeholder="New product name" />
-    <input type="number" min="0" class="productStock" placeholder="Stock" />
+    <input
+      type="text"
+      class="productName addProductInput"
+      placeholder="New product name"
+    />
+    <input
+      type="number"
+      min="0"
+      class="productStock addProductInput"
+      placeholder="Stock"
+    />
     <button class="addProduct">Add Product</button>
   </form>
 </template>
 
 <template name="cart">
-  <h1>Cart</h1>
-  <ul class="products">
+  <h2 class="marginLeft40">Cart</h2>
+  <div class="products">
     {{#each getUserCart}}
-    <div>{{productName}} - {{quantity}}</div>
+    <div class="product flexDirectionColumn">
+      <div>Product name: {{productName}}</div>
+      <div>Quantity: {{quantity}}</div>
+    </div>
     {{/each}}
-  </ul>
-  <button class="buyNow">Buy Now</button>
+    <div class="buyNowContainer">
+      <button class="buyNow">BUY NOW!</button>
+    </div>
+  </div>
 </template>
