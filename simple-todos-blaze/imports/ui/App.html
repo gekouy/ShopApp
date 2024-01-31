@@ -1,50 +1,52 @@
 <body>
-    {{> mainContainer}}
-    </body>
+  {{> mainContainer}}
+</body>
 
-    <template name="mainContainer">
-        <div class="app">
-            <header>
-                <div class="app-bar">
-                    <div class="app-header">
-                        <h1>ShoppApp</h1>
-                    </div>
-                </div>
-            </header>
-            <div class="main">
-                    {{> form }}
-                    <ul class="products">
-                        {{#each getProducts}}
-                            <div class="product">
-                                <div class="productName">Product name: {{productName}}
-                            Stock: {{productStock}}</div>
-                                <button class="addToCart" disabled={{isDisabled}}>Add to cart</button>
-                            </div>
-                        {{/each}}
-                    </ul>
-                    <ul>{{> cart}}</ul>
-            </div>
+<template name="mainContainer">
+  <div class="app">
+    <header>
+      <div class="app-bar">
+        <div class="app-header">
+          <h1>ShoppApp</h1>
         </div>
-    </template>
-    
-    <template name="form">
-        <form class="product-form">
-            <input type="text" class="productName" placeholder="New product name" />
-            <input type="text" class="productStock" placeholder="Stock" />
-            <button class="addProduct" >Add Product</button>
-        </form>
-    </template>
+      </div>
+    </header>
+    <div class="main">
+      {{> form }}
+      <ul class="products">
+        {{#each getProducts}}
+        <div class="product">
+          <div class="productName">
+            <div>Product name: {{productName}}</div>
+            <div>Stock: {{productStock}}</div>
+          </div>
+          <button class="addToCart" disabled="{{isDisabled}}">
+            Add to cart
+          </button>
+        </div>
+        {{/each}}
+      </ul>
+      <ul>
+        {{> cart}}
+      </ul>
+    </div>
+  </div>
+</template>
 
-    <template name="cart">
-        <h1>Cart</h1>
-        <ul class="products">
-            {{#each getUserCart}}
-                <div>
-                    {{productName}}
-                     - 
-                    {{quantity}}
-                </div>
-            {{/each}}
-        </ul>
-        <button class="buyNow">Buy Now</button>
-    </template>
+<template name="form">
+  <form class="productForm">
+    <input type="text" class="productName" placeholder="New product name" />
+    <input type="text" class="productStock" placeholder="Stock" />
+    <button class="addProduct">Add Product</button>
+  </form>
+</template>
+
+<template name="cart">
+  <h1>Cart</h1>
+  <ul class="products">
+    {{#each getUserCart}}
+    <div>{{productName}} - {{quantity}}</div>
+    {{/each}}
+  </ul>
+  <button class="buyNow">Buy Now</button>
+</template>

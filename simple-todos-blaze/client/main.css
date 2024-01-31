@@ -139,7 +139,7 @@ header {
   font-weight: bold;
 }
 
-.login-form > div  > input {
+.login-form > div > input {
   flex-grow: 1;
   box-sizing: border-box;
   padding: 10px 6px;
@@ -179,7 +179,10 @@ header {
   font-weight: bold;
 }
 
-.addToCart, .addProduct, .buyNow, .logout {
+.addToCart,
+.addProduct,
+.buyNow,
+.logout {
   border-radius: 4px;
   border: 0px;
   background-color: #00a3b3;
@@ -197,14 +200,18 @@ header {
   background-color: #b6291f;
 }
 
-.product{
-  display:flex;
-  border:1px solid;
+.product {
+  display: flex;
+  border: 1px solid;
   padding: 4px;
   justify-content: space-between;
   margin-bottom: 2px;
 }
-.productName{
+.productName {
   display: flex;
   flex-direction: column;
+}
+
+.productForm {
+  display: flex;
 }
