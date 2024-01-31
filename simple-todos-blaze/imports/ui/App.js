@@ -91,6 +91,8 @@ Template.form.events({
         productName: productName.value,
         productStock: productStock.value,
       });
+      productName.value = "";
+      productStock.value = "";
     }
   },
   "input .productName"(event) {
@@ -103,6 +105,7 @@ Template.form.events({
   "input .productStock"(event) {
     event.preventDefault();
     let stock = document.getElementsByClassName("productStock")[0].value;
+
     if (stock != "") {
       pStock = stock;
     }

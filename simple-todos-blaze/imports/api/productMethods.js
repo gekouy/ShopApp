@@ -1,12 +1,8 @@
 import { Meteor } from "meteor/meteor";
-import { check } from "meteor/check";
 import { ProductCollection } from "../db/ProductCollection";
 
 Meteor.methods({
   "product.insert"(data) {
-    console.log("Product insert", data);
-    //check(text, String);
-
     ProductCollection.insert({
       productName: data.productName,
       productStock: data.productStock,
